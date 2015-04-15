@@ -19,12 +19,8 @@ $tags = fread($tagsfile, filesize("Tags.txt"));
 $text = fread($textfile, filesize("Text.txt"));
 
 echo "<data>";
-echo "	<firstname>" + $firstnames[rand(0, count($firstnames)] + "</firstname>";
+echo "	<firstname>" . $firstnames[rand(0, count($firstnames)] . "</firstname>";
 echo "</data>";
-
-
-
-
 
 
 
