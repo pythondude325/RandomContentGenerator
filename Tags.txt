@@ -1,0 +1,9 @@
+badge
+marker
+ID
+identification
+sticker
+inscription
+mark
+note
+

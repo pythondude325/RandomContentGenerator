@@ -1,0 +1,12 @@
+Boxes
+Windows
+Roads
+Tables
+Lamps
+Clouds
+Books
+Trees
+Birds
+Robots
+
+
