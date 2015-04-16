@@ -15,13 +15,11 @@ $verb = substr($verbs[array_rand($verbs)], 0, -1);
 $adjective = substr($adjectives[array_rand($adjectives)], 0, -1);
 $noun = substr($nouns[array_rand($nouns)], 0, -1);
 $title = $verb . " " . $adjective . " " . $noun; 
-$numoftags = mt_rand(-1, 3); // specfies how many tags
-for ($i = 0; $i <= $numoftags; $i++) { // generate the tags
-	if ($i < $numoftags) { // makes a comma and space if not on the last item 
-		$personaltags .= substr($tags[array_rand($tags)], 0, -1) . ", ";
-	} else {
-		$personaltags .= substr($tags[array_rand($tags)], 0, -1);
-	}
+
+$numoftags = mt_rand(0, 4); // specfies how many tags
+for ($i = -1; $i <= $numoftags; $i++) { // generate the tags
+	$personaltags[$i] = substr($tags[array_rand($tags)], 0, -1);
+	// TODO: implement alphabetical sorting and distinct tags
 }
 
 
