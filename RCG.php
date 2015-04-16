@@ -16,12 +16,16 @@ $adjective = substr($adjectives[array_rand($adjectives)], 0, -1);
 $noun = substr($nouns[array_rand($nouns)], 0, -1);
 $title = $verb . " " . $adjective . " " . $noun; 
 
-$numoftags = mt_rand(0, 4); // specfies how many tags
+$numoftags = mt_rand(0, 4); // specifies how many tags
 for ($i = -1; $i <= $numoftags; $i++) { // generate the tags
 	$personaltags[$i] = substr($tags[array_rand($tags)], 0, -1);
 	// TODO: implement alphabetical sorting and distinct tags
 }
 
+$numoftext = mt_rand(3, 10); // specifies how many paragraphs of text
+for ($j = -1; $i <= $numoftext; $j++) {
+	$personaltext[$i] = substr($text[array_rand($text)], 0, -1);
+}
 
 echo "&lt;data&gt;";
 echo "&lt;firstname&gt;" . $firstname . "&lt;/firstname&gt;";
