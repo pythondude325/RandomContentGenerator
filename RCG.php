@@ -10,13 +10,14 @@ $tags = file("Tags.txt");
 $text = file("Text.txt");
 $domains = file("Domains.txt");
 
-$firstname = substr($firstnames[array_rand($firstnames)], 0, -1);
-$lastname = substr($lastnames[array_rand($lastnames)], 0, -1);
+// set my variables
+$firstname = substr($firstnames[array_rand($firstnames)], 0, -1); // for some reason when i retrieve the files i get an extra space at the end of the line
+$lastname = substr($lastnames[array_rand($lastnames)], 0, -1);    // substr($x, 0, -1) trims off that extra space
 $verb = substr($verbs[array_rand($verbs)], 0, -1);
 $adjective = substr($adjectives[array_rand($adjectives)], 0, -1);
 $noun = substr($nouns[array_rand($nouns)], 0, -1);
-$title = $verb . " " . $adjective . " " . $noun; 
-$email = $firstname . "." . $lastname . "@" . substr($domains[array_rand($domains)]);
+$title = $verb . " " . $adjective . " " . $noun; // this strings together the content for the <title> tag
+$email = $firstname . "." . $lastname . "@" . substr($domains[array_rand($domains)]); // does the same exept it's for the <email> tag
 
 $numoftags = mt_rand(0, 4); // specifies how many tags
 for ($i = -1; $i <= $numoftags; $i++) { // generate the tags
@@ -31,6 +32,7 @@ for ($j = -1; $j <= $numoftext; $j++) { // this loop is used to make the paragra
 	// that last bit adds two new lines if $j < $numoftext
 }
 
+// actualy outputs the data
 echo "&lt;data&gt;";
 echo "&lt;firstname&gt;" . $firstname . "&lt;/firstname&gt;";
 echo "&lt;lastname&gt;" . $lastname . "&lt;/lastname&gt;";
