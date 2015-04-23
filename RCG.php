@@ -17,7 +17,7 @@ $verb = substr($verbs[array_rand($verbs)], 0, -1);
 $adjective = substr($adjectives[array_rand($adjectives)], 0, -1);
 $noun = substr($nouns[array_rand($nouns)], 0, -1);
 $title = $verb . " " . $adjective . " " . $noun; // this strings together the content for the <title> tag
-$email = $firstname . "." . $lastname . "@" . substr($domains[array_rand($domains)]); // does the same exept it's for the <email> tag
+$email = $firstname . "." . $lastname . "@" . substr($domains[array_rand($domains)], 0, -1); // does the same exept it's for the <email> tag
 
 $numoftags = mt_rand(0, 4); // specifies how many tags
 for ($i = -1; $i <= $numoftags; $i++) { // generate the tags
