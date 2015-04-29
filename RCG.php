@@ -21,26 +21,26 @@ $email = $firstname . "." . $lastname . "@" . trim($domains[array_rand($domains)
 
 $numoftags = mt_rand(0, 4); // specifies how many tags
 for ($i = -1; $i <= $numoftags; $i++) { // generate the tags
-	$personaltags[$i] = substr($tags[array_rand($tags)], 0, -1);
+	$personaltags[$i] = trim($tags[array_rand($tags)]);
 	// TODO: implement alphabetical sorting and distinct tags
 }
 
 $numoftext = mt_rand(3, 10); // specifies how many paragraphs of text
 for ($j = -1; $j <= $numoftext; $j++) { // this loop is used to make the paragraphs of text for the <text> item
-	$personaltextlist[$j] = substr($text[array_rand($text)], 0, -1); // puts a random element of $text into $personaltextlist
+	$personaltextlist[$j] = trim($text[array_rand($text)]); // puts a random element of $text into $personaltextlist
 	$personaltext = ""; // needed a definition
 	$personaltext = $personaltext . $personaltextlist[$j] . ($j < $numoftext) ? "\n\n" : "";
 	// that last bit adds two new lines if $j < $numoftext
 }
 
 // actualy outputs the data
-echo "&lt;data%gt;";
-echo "&lt;firstname&gt;" . $firstname . "&lt;/firstname&gt;";
-echo "&lt;lastname&gt;" . $lastname . "&lt;/lastname&gt;";
-echo "&lt;title&gt;" . $title . "&lt;/title&gt;";
-echo "&lt;text&gt;" . $personaltext . "&lt;/text&gt;";
-echo "&lt;email&gt;" . $email . "&lt;/email&gt;";
-echo "&lt;/data&gt;";
+echo "<data>";
+echo "<firstname>" . $firstname . "</firstname>";
+echo "<lastname>" . $lastname . "</lastname>";
+echo "<title>" . $title . "</title>";
+echo "<text>" . $personaltext . "</text>";
+echo "<email>" . $email . "</email>";
+echo "</data>";
 
 
 
