@@ -11,13 +11,13 @@ $text = file("Text.txt");
 $domains = file("Domains.txt");
 
 // set my variables
-$firstname = substr($firstnames[array_rand($firstnames)], 0, -1); // for some reason when i retrieve the files i get an extra space at the end of the line
-$lastname = substr($lastnames[array_rand($lastnames)], 0, -1);    // substr($x, 0, -1) trims off that extra space
-$verb = substr($verbs[array_rand($verbs)], 0, -1);
-$adjective = substr($adjectives[array_rand($adjectives)], 0, -1);
-$noun = substr($nouns[array_rand($nouns)], 0, -1);
+$firstname = trim($firstnames[array_rand($firstnames)]); // for some reason when i retrieve the files i get an extra space at the end of the line
+$lastname = trim($lastnames[array_rand($lastnames)]);    // substr($x, 0, -1) trims off that extra space
+$verb = trim($verbs[array_rand($verbs)]);
+$adjective = trim($adjectives[array_rand($adjectives)]);
+$noun = trim($nouns[array_rand($nouns)]);
 $title = $verb . " " . $adjective . " " . $noun; // this strings together the content for the <title> tag
-$email = $firstname . "." . $lastname . "@" . substr($domains[array_rand($domains)], 0, -1); // does the same exept it's for the <email> tag
+$email = $firstname . "." . $lastname . "@" . trim($domains[array_rand($domains)]); // does the same exept it's for the <email> tag
 
 $numoftags = mt_rand(0, 4); // specifies how many tags
 for ($i = -1; $i <= $numoftags; $i++) { // generate the tags
