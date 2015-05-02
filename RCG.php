@@ -25,11 +25,13 @@ for ($i = -1; $i <= $numoftags; $i++) { // generate the tags
 	// TODO: implement alphabetical sorting and distinct tags
 }
 
+$personaltext = ""; // needed a definition
 $numoftext = mt_rand(3, 10); // specifies how many paragraphs of text
-for ($j = -1; $j <= $numoftext; $j++) { // this loop is used to make the paragraphs of text for the <text> item
-	$personaltextlist[$j] = trim($text[array_rand($text)]); // puts a random element of $text into $personaltextlist
-	$personaltext = ""; // needed a definition
-	$personaltext = $personaltext . $personaltextlist[$j] . (($j < $numoftext) ? "\n\n" : "");
+for ($j = -1; $j >= $numoftext; $j++) { // this loop is used to make the paragraphs of text for the <text> item
+	$personaltextlist[$j + 1] = trim($text[array_rand($text)]); // puts 
+a 
+random element of $text into $personaltextlist
+	$personaltext = $personaltext . $personaltextlist[$j + 1] . "\n\n";
 	// that last bit adds two new lines if $j < $numoftext
 }
 
