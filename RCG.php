@@ -25,11 +25,23 @@ $numoftags = mt_rand(1, 4); // specifies how many tags
 for ($i = 0; $i < $numoftags; $i++) { // generate the tags
 	$currenttagindex = array_rand($tags); // generate a random index from $tags
 	$currenttag = $tags[$currenttagindex]; // get the current tag from $currenttagindex
-	// unset($tags[$currenttagindex]); // unset said tag so that i do not get it again when picking (two lines above)
-	$personaltags[$i] = $currenttag;
+	unset($tags[$currenttagindex]); // unset said tag so that i do not get it again when picking (two lines above)
+	$personaltagslist[$i] = trim($currenttag);
 	// TODO: string together the tags
 }
-print_r($personaltags); // for debuging
+// print_r($personaltags);
+
+sort($personaltagslist); // sort the list in alphabetical order
+
+$personaltags = ""; 
+for ($i = 0, $size = count($personaltagslist); $i < $size; ++$i) { // goes through a loop for all the elements
+	
+	$personaltags = $personaltags . strtolower($personaltagslist[$i]); // append the current element of the loop to personaltags
+	
+	if ($i != ($size - 1)) {
+		$personaltags = $personaltags . ", "; // append a comma and a space if not on the last element
+	}
+}
 
 $personaltext = ""; // needed a definition
 $numoftext = mt_rand(3, 10); // specifies how many paragraphs of text
@@ -44,6 +56,7 @@ echo "<data>";
 echo "<firstname>" . $firstname . "</firstname>";
 echo "<lastname>" . $lastname . "</lastname>";
 echo "<title>" . $title . "</title>";
+echo "<tags>" . $personaltags . "</tags>";
 echo "<text>" . $personaltext . "</text>";
 echo "<email>" . $email . "</email>";
 echo "</data>";
