@@ -1,6 +1,9 @@
-#!/bin/php
-
 <?php
+
+function ucname($string) { // this function just returns a word with correct capitalization
+    $string = ucwords(strtolower($string));
+    return $string;
+}
 
 // access the files
 $firstnames = file("FirstNames.txt");
@@ -18,7 +21,7 @@ $lastname = trim($lastnames[array_rand($lastnames)]);    // substr($x, 0, -1) tr
 $verb = trim($verbs[array_rand($verbs)]);
 $adjective = trim($adjectives[array_rand($adjectives)]);
 $noun = trim($nouns[array_rand($nouns)]);
-$title = $verb . " " . $adjective . " " . $noun; // this strings together the content for the <title> tag
+$title = ucname($verb) . " " . ucname($adjective) . " " . ucname($noun); // this strings together the content for the <title> tag
 $email = strtolower($firstname) . "." . strtolower($lastname) . "@" . trim($domains[array_rand($domains)]); // does the same exept it's for the <email> tag
 
 
