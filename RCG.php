@@ -21,8 +21,11 @@ $noun = trim($nouns[array_rand($nouns)]);
 $title = $verb . " " . $adjective . " " . $noun; // this strings together the content for the <title> tag
 $email = strtolower($firstname) . "." . strtolower($lastname) . "@" . trim($domains[array_rand($domains)]); // does the same exept it's for the <email> tag
 
+
+// tag loops
+
 $numoftags = mt_rand(1, 4); // specifies how many tags
-for ($i = 0; $i < $numoftags; $i++) { // generate the tags
+for ($i = 0; $i < $numoftags; ++$i) { // generate the tags
 	$currenttagindex = array_rand($tags); // generate a random index from $tags
 	$currenttag = $tags[$currenttagindex]; // get the current tag from $currenttagindex
 	unset($tags[$currenttagindex]); // unset said tag so that i do not get it again when picking (two lines above)
@@ -41,13 +44,24 @@ for ($i = 0, $size = count($personaltagslist); $i < $size; ++$i) { // goes throu
 	}
 }
 
-$personaltext = ""; // needed a definition
+
+// text loops
+
 $numoftext = mt_rand(3, 10); // specifies how many paragraphs of text
-for ($j = -1; $j >= $numoftext; $j++) { // this loop is used to make the paragraphs of text for the <text> item
-	$personaltextlist[$j + 1] = trim($text[array_rand($text)]); // puts a random element of $text into $personaltextlist
-	$personaltext = $personaltext . $personaltextlist[$j + 1] . "\n\n";
-	// TODO: finish this
+for ($j = 0; $j < $numoftext; ++$j) { // this loop is used to make the paragraphs of text for the <text> item
+	$personaltextlist[$j] = trim($text[array_rand($text)]); // puts a random element of $text into $personaltextlist
 }
+
+$personaltext = ""; 
+for ($j = 0, $size = count($personaltextlist); $j < $size; ++$j) { // goes through a loop for all the elements
+
+	$personaltext = $personaltext . $personaltextlist[$j]; // append the current element of the loop to personaltext
+	
+	if ($j != ($size - 1)) {
+		$personaltext = $personaltext . "\n\n"; // append two new lines and a space if not on the last element
+	}
+}
+
 
 // actualy outputs the data
 echo "<data>";
