@@ -5,6 +5,9 @@ function ucname($string) { // this function just returns a word with correct cap
     return $string;
 }
 
+header("Content-type: application/xml");
+
+
 // access the files
 $firstnames = file("FirstNames.txt");
 $lastnames = file("LastNames.txt");
