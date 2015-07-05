@@ -1,14 +1,15 @@
 <?php
 
+// function ucname {{{
 function ucname($string) { // this function just returns a word with correct capitalization
     $string = ucwords(strtolower($string));
     return $string;
 }
+// }}}
 
 header("Content-type: application/xml");
 
-
-// access the files
+// File Accsess {{{
 $firstnames = file("FirstNames.txt");
 $lastnames = file("LastNames.txt");
 $verbs = file("Verbs.txt");
@@ -17,8 +18,9 @@ $nouns = file("Nouns.txt");
 $tags = file("Tags.txt");
 $text = file("Text.txt");
 $domains = file("Domains.txt");
+// }}}
 
-// set my variables
+// Setting the Variables {{{
 $firstname = trim($firstnames[array_rand($firstnames)]); // for some reason when i retrieve the files i get an extra space at the end of the line
 $lastname = trim($lastnames[array_rand($lastnames)]);    // substr($x, 0, -1) trims off that extra space
 $verb = trim($verbs[array_rand($verbs)]);
@@ -26,10 +28,10 @@ $adjective = trim($adjectives[array_rand($adjectives)]);
 $noun = trim($nouns[array_rand($nouns)]);
 $title = ucname($verb) . " " . ucname($adjective) . " " . ucname($noun); // this strings together the content for the <title> tag
 $email = strtolower($firstname) . "." . strtolower($lastname) . "@" . trim($domains[array_rand($domains)]); // does the same exept it's for the <email> tag
+// }}}
 
-
-// tag loops
-
+// Tag Loops {{{
+// Getting the tags {{{
 $numoftags = mt_rand(1, 4); // specifies how many tags
 for ($i = 0; $i < $numoftags; ++$i) { // generate the tags
 	$currenttagindex = array_rand($tags); // generate a random index from $tags
@@ -37,9 +39,11 @@ for ($i = 0; $i < $numoftags; ++$i) { // generate the tags
 	unset($tags[$currenttagindex]); // unset said tag so that i do not get it again when picking (two lines above)
 	$personaltagslist[$i] = trim($currenttag);
 }
+// }}}
 
 sort($personaltagslist); // sort the list in alphabetical order
 
+// Appending the tags into $personaltags {{{
 $personaltags = ""; 
 for ($i = 0, $size = count($personaltagslist); $i < $size; ++$i) { // goes through a loop for all the elements
 	
@@ -49,10 +53,10 @@ for ($i = 0, $size = count($personaltagslist); $i < $size; ++$i) { // goes throu
 		$personaltags = $personaltags . ", "; // append a comma and a space if not on the last element
 	}
 }
+// }}}
+// }}}
 
-
-// text loops
-
+// Text Loops {{{
 $numoftext = mt_rand(3, 10); // specifies how many paragraphs of text
 for ($j = 0; $j < $numoftext; ++$j) { // this loop is used to make the paragraphs of text for the <text> item
 	$personaltextlist[$j] = trim($text[array_rand($text)]); // puts a random element of $text into $personaltextlist
@@ -67,9 +71,9 @@ for ($j = 0, $size = count($personaltextlist); $j < $size; ++$j) { // goes throu
 		$personaltext = $personaltext . "\n\n"; // append two new lines and a space if not on the last element
 	}
 }
+// }}}
 
-
-// actualy outputs the data
+// Data Output {{{
 echo "<data>";
 echo "<firstname>" . $firstname . "</firstname>";
 echo "<lastname>" . $lastname . "</lastname>";
@@ -78,5 +82,5 @@ echo "<tags>" . $personaltags . "</tags>";
 echo "<text>" . $personaltext . "</text>";
 echo "<email>" . $email . "</email>";
 echo "</data>";
-
+// }}}
 ?>
